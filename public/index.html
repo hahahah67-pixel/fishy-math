@@ -1,18 +1,756 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>index</title>
-    <style>
-        body {
-            background-color: white;
-            color: black;
-            font-family: monospace;
-            margin: 8px;
-        }
-    </style>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Online Courses for College Credit, Exam Prep &amp; K-12 | Study.com</title>
+  <meta name="description" content="Study.com has engaging online courses in math, science, history, English, business &amp; more."/>
+  <meta name="robots" content="index, follow"/>
+  <link rel="icon" type="image/x-icon" href="https://study.com/favicon.ico"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --bg: #06060a;
+      --surface: #0e0e16;
+      --border: rgba(255,255,255,0.07);
+      --accent: #4a8fff;
+      --accent2: #a78bfa;
+      --text: #e8e8f0;
+      --muted: rgba(232,232,240,0.45);
+      --card: rgba(255,255,255,0.03);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: "DM Sans", sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── Canvas starfield ─────────────────────────────────────────────────── */
+    #stars {
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.5;
+    }
+
+    /* ── Layout ───────────────────────────────────────────────────────────── */
+    .wrap {
+      position: relative;
+      z-index: 1;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 0 28px;
+    }
+
+    /* ── Nav ──────────────────────────────────────────────────────────────── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 18px 0;
+      background: rgba(6,6,10,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav .wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .nav-logo {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: #fff;
+      letter-spacing: -0.02em;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .nav-logo .fish { font-size: 22px; }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: #fff; }
+
+    /* ── Hero ─────────────────────────────────────────────────────────────── */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding-top: 80px;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+      max-width: 720px;
+    }
+
+    .hero-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(74,143,255,0.1);
+      border: 1px solid rgba(74,143,255,0.25);
+      border-radius: 999px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      width: fit-content;
+      animation: fadeUp 0.6s ease both;
+    }
+
+    .hero-tag .dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      animation: pulse 2s ease infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    h1 {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: clamp(42px, 7vw, 76px);
+      line-height: 1.05;
+      letter-spacing: -0.03em;
+      color: #fff;
+      animation: fadeUp 0.6s 0.1s ease both;
+    }
+
+    h1 .accent { color: var(--accent); }
+    h1 .accent2 { color: var(--accent2); }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      font-weight: 300;
+      animation: fadeUp 0.6s 0.2s ease both;
+    }
+
+    .hero-cta {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      animation: fadeUp 0.6s 0.3s ease both;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 13px 28px;
+      border-radius: 10px;
+      font-size: 15px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: none;
+      font-family: inherit;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(74,143,255,0.35);
+    }
+
+    .btn-primary:hover {
+      background: #3a7aee;
+      transform: translateY(-2px);
+      box-shadow: 0 8px 32px rgba(74,143,255,0.45);
+    }
+
+    .btn-ghost {
+      background: var(--card);
+      color: var(--text);
+      border: 1px solid var(--border);
+    }
+
+    .btn-ghost:hover {
+      background: rgba(255,255,255,0.06);
+      transform: translateY(-2px);
+    }
+
+    /* ── Stats strip ──────────────────────────────────────────────────────── */
+    .stats {
+      padding: 40px 0;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-grid {
+      display: flex;
+      gap: 0;
+      justify-content: space-around;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 20px 32px;
+      opacity: 0;
+      animation: fadeUp 0.5s ease forwards;
+    }
+
+    .stat-item:nth-child(1) { animation-delay: 0.1s; }
+    .stat-item:nth-child(2) { animation-delay: 0.2s; }
+    .stat-item:nth-child(3) { animation-delay: 0.3s; }
+    .stat-item:nth-child(4) { animation-delay: 0.4s; }
+
+    .stat-num {
+      font-family: "Syne", sans-serif;
+      font-size: 36px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 2px;
+      letter-spacing: 0.04em;
+    }
+
+    /* ── Section ──────────────────────────────────────────────────────────── */
+    section {
+      padding: 100px 0;
+    }
+
+    .section-tag {
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: clamp(28px, 4vw, 44px);
+      letter-spacing: -0.02em;
+      color: #fff;
+      line-height: 1.1;
+      margin-bottom: 16px;
+    }
+
+    .section-sub {
+      font-size: 17px;
+      color: var(--muted);
+      max-width: 480px;
+      font-weight: 300;
+    }
+
+    /* ── Feature cards ────────────────────────────────────────────────────── */
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+      margin-top: 52px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 28px;
+      transition: border-color 0.2s, background 0.2s, transform 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(74,143,255,0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    .card:hover {
+      border-color: rgba(74,143,255,0.25);
+      background: rgba(255,255,255,0.05);
+      transform: translateY(-3px);
+    }
+
+    .card:hover::before { opacity: 1; }
+
+    .card-icon {
+      width: 44px; height: 44px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      margin-bottom: 18px;
+      background: rgba(74,143,255,0.1);
+      border: 1px solid rgba(74,143,255,0.2);
+    }
+
+    .card h3 {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 17px;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    /* ── How it works ─────────────────────────────────────────────────────── */
+    .steps {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 52px;
+      position: relative;
+    }
+
+    .steps::before {
+      content: "";
+      position: absolute;
+      left: 21px;
+      top: 0; bottom: 0;
+      width: 1px;
+      background: linear-gradient(180deg, var(--accent), transparent);
+    }
+
+    .step {
+      display: flex;
+      gap: 24px;
+      padding-bottom: 40px;
+      position: relative;
+    }
+
+    .step-num {
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      background: var(--bg);
+      border: 1px solid var(--accent);
+      color: var(--accent);
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-content h3 {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      color: #fff;
+      margin-bottom: 6px;
+      margin-top: 10px;
+    }
+
+    .step-content p {
+      font-size: 15px;
+      color: var(--muted);
+    }
+
+    /* ── FAQ ──────────────────────────────────────────────────────────────── */
+    .faq-list {
+      margin-top: 52px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .faq-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      overflow: hidden;
+    }
+
+    .faq-q {
+      width: 100%;
+      background: none;
+      border: none;
+      color: #fff;
+      font-family: "Syne", sans-serif;
+      font-weight: 600;
+      font-size: 16px;
+      text-align: left;
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: color 0.2s;
+    }
+
+    .faq-q:hover { color: var(--accent); }
+
+    .faq-arrow {
+      font-size: 18px;
+      transition: transform 0.3s;
+      color: var(--muted);
+    }
+
+    .faq-item.open .faq-arrow { transform: rotate(45deg); color: var(--accent); }
+
+    .faq-a {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.35s ease, padding 0.35s ease;
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.7;
+      padding: 0 24px;
+    }
+
+    .faq-item.open .faq-a {
+      max-height: 200px;
+      padding: 0 24px 20px;
+    }
+
+    /* ── CTA banner ───────────────────────────────────────────────────────── */
+    .cta-band {
+      background: linear-gradient(135deg, rgba(74,143,255,0.12), rgba(167,139,250,0.08));
+      border: 1px solid rgba(74,143,255,0.2);
+      border-radius: 24px;
+      padding: 64px 48px;
+      text-align: center;
+      margin-bottom: 100px;
+    }
+
+    .cta-band h2 { margin-bottom: 14px; }
+    .cta-band p { color: var(--muted); margin-bottom: 32px; font-size: 17px; }
+
+    /* ── Footer ───────────────────────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 32px 0;
+    }
+
+    footer .wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .footer-logo {
+      font-family: "Syne", sans-serif;
+      font-weight: 700;
+      font-size: 15px;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .footer-note {
+      font-size: 13px;
+      color: rgba(255,255,255,0.2);
+    }
+
+    /* ── Animations ───────────────────────────────────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(18px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Scroll reveal ────────────────────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────────────────── */
+    @media (max-width: 600px) {
+      .nav-links { display: none; }
+      .stats-grid { flex-direction: column; align-items: center; }
+      .cta-band { padding: 40px 24px; }
+    }
+  </style>
 </head>
 <body>
-wwelcome to the site
+
+<canvas id="stars"></canvas>
+
+<!-- Nav -->
+<nav>
+  <div class="wrap">
+    <a class="nav-logo" href="#">
+      <span class="fish">🐟</span> Fish Proxy
+    </a>
+    <ul class="nav-links">
+      <li><a href="#features">Features</a></li>
+      <li><a href="#how">How it works</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- Hero -->
+<div class="wrap">
+  <section class="hero">
+    <div class="hero-inner">
+      <div class="hero-tag">
+        <span class="dot"></span>
+        Now in beta
+      </div>
+      <h1>Browse the web<br><span class="accent">unlock the full internet.</span></h1>
+      <p class="hero-sub">a powerful web proxy powered by proxy engines ultraviolet and scramjet, great UI and features.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#how">Get started →</a>
+        <a class="btn btn-ghost" href="#features">Learn more</a>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- Stats -->
+<div class="stats">
+  <div class="wrap">
+    <div class="stats-grid">
+      <div class="stat-item">
+        <div class="stat-num">2</div>
+        <div class="stat-label">Proxy Engines</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30+</div>
+        <div class="stat-label">Built-in Games</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">100%</div>
+        <div class="stat-label">Free to use</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">0</div>
+        <div class="stat-label">Accounts needed</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Features -->
+<div class="wrap" id="features">
+  <section>
+    <div class="reveal">
+      <div class="section-tag">Features</div>
+      <h2>many features,<br>all convince.</h2>
+      <p class="section-sub">Built lean and fast. No bloat, full privacy, easy and fast. Just open it and go.</p>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <div class="card-icon">⚡</div>
+        <h3>Dual Proxy Engines</h3>
+        <p>Switch between Ultraviolet and Scramjet. the worlds most advanced proxy engines,Two engines means better compatibility across more sites.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎮</div>
+        <h3>Built-in Games</h3>
+        <p>30+ games ready to play.  — you can even suggest even more games for us to add!.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🔒</div>
+        <h3>Private by design</h3>
+        <p>No downloads. No bloat. No personal data collected. Your session stays yours.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🎨</div>
+        <h3>Custom experience</h3>
+        <p>Change your background, cursor color, search engine and proxy engine from the settings page.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">📱</div>
+        <h3>Works anywhere</h3>
+        <p>Any browser, any device. No extensions, no downloads. Just a URL.</p>
+      </div>
+      <div class="card">
+        <div class="card-icon">🚀</div>
+        <h3>Always online</h3>
+        <p>Hosted on AWS with CloudFront CDN. Fast load times no matter where you are.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- How it works -->
+<div class="wrap" id="how">
+  <section>
+    <div class="reveal">
+      <div class="section-tag">How it works</div>
+      <h2>Three steps.<br>That's it.</h2>
+      <p class="section-sub">No setup. No configuration. Works out of the box.</p>
+    </div>
+    <div class="steps reveal">
+      <div class="step">
+        <div class="step-num">1</div>
+        <div class="step-content">
+          <h3>Visit the site</h3>
+          <p>Open Fish Proxy in any browser. No account needed — you're in instantly.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <div class="step-content">
+          <h3>Type any URL or search</h3>
+          <p>Enter a website address or search term in the bar. Fish Proxy handles the rest.</p>
+        </div>
+      </div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <div class="step-content">
+          <h3>Browse freely</h3>
+          <p>The site loads through our proxy engines. Use the browser console to navigate around.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- FAQ -->
+<div class="wrap" id="faq">
+  <section>
+    <div class="reveal">
+      <div class="section-tag">FAQ</div>
+      <h2>Questions answered.</h2>
+    </div>
+    <div class="faq-list reveal">
+      <div class="faq-item">
+        <button class="faq-q">Is Fish Proxy free? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Yes, completely free. No subscriptions, no premium tiers, no hidden costs.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Do I need to make an account? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">No account required. Just open the site and start browsing immediately.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">What's the difference between UV and SJ? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Ultraviolet (UV) is scramjets (SJ) precerser both engines have support for modern fast comaptible sites yet staying fast and sleek.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Does it work on school Chromebooks? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Fish Proxy is designed to work through common school network filters. Results may vary depending on your school's specific configuration.</div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q">Is my browsing private? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Fish Proxy collects only anonymous aggregate usage stats — like which proxy engine is most popular. No individual browsing history is stored or tracked.</div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- CTA -->
+<div class="wrap">
+  <div class="cta-band reveal">
+    <h2>Ready to browse freely?</h2>
+    <p>No sign up. No install. Just open it.</p>
+    <a class="btn btn-primary" href="#">Launch Fish Proxy →</a>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer>
+  <div class="wrap">
+    <div class="footer-logo">🐟 Fish Proxy</div>
+    <div class="footer-note">Built with care. Use responsibly.</div>
+  </div>
+</footer>
+
+<script>
+// Starfield
+(function() {
+  const c = document.getElementById("stars");
+  const ctx = c.getContext("2d");
+  c.width = window.innerWidth;
+  c.height = window.innerHeight;
+  const stars = Array.from({length: 120}, () => ({
+    x: Math.random()*c.width, y: Math.random()*c.height,
+    r: Math.random()*1.2+0.2, o: Math.random()*0.5+0.1,
+    p: Math.random()*Math.PI*2, ps: Math.random()*0.008+0.003
+  }));
+  (function draw() {
+    ctx.clearRect(0,0,c.width,c.height);
+    stars.forEach(s => {
+      s.y += 0.2;
+      if (s.y > c.height+2) { s.y=-2; s.x=Math.random()*c.width; }
+      s.p += s.ps;
+      const a = s.o*(0.7+0.3*Math.sin(s.p));
+      ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+      ctx.fillStyle = "rgba(255,255,255,"+a+")"; ctx.fill();
+    });
+    requestAnimationFrame(draw);
+  })();
+  window.addEventListener("resize", () => { c.width=window.innerWidth; c.height=window.innerHeight; });
+})();
+
+// Scroll reveal
+const reveals = document.querySelectorAll(".reveal");
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
+}, { threshold: 0.12 });
+reveals.forEach(r => obs.observe(r));
+
+// FAQ accordion
+document.querySelectorAll(".faq-q").forEach(btn => {
+  btn.addEventListener("click", () => {
+    const item = btn.parentElement;
+    const isOpen = item.classList.contains("open");
+    document.querySelectorAll(".faq-item").forEach(i => i.classList.remove("open"));
+    if (!isOpen) item.classList.add("open");
+  });
+});
+</script>
 </body>
 </html>
