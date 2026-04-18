@@ -22,7 +22,6 @@
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
     html { scroll-behavior: smooth; }
 
     body {
@@ -34,7 +33,6 @@
       overflow-x: hidden;
     }
 
-    /* ── Canvas starfield ─────────────────────────────────────────────────── */
     #stars {
       position: fixed;
       inset: 0;
@@ -43,7 +41,6 @@
       opacity: 0.5;
     }
 
-    /* ── Layout ───────────────────────────────────────────────────────────── */
     .wrap {
       position: relative;
       z-index: 1;
@@ -52,7 +49,7 @@
       padding: 0 28px;
     }
 
-    /* ── Nav ──────────────────────────────────────────────────────────────── */
+    /* ── Nav ── */
     nav {
       position: fixed;
       top: 0; left: 0; right: 0;
@@ -62,13 +59,7 @@
       backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-
-    nav .wrap {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-    }
-
+    nav .wrap { display: flex; align-items: center; justify-content: space-between; }
     .nav-logo {
       font-family: "Syne", sans-serif;
       font-weight: 800;
@@ -80,15 +71,8 @@
       align-items: center;
       gap: 8px;
     }
-
     .nav-logo .fish { font-size: 22px; }
-
-    .nav-links {
-      display: flex;
-      gap: 32px;
-      list-style: none;
-    }
-
+    .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a {
       color: var(--muted);
       text-decoration: none;
@@ -97,24 +81,11 @@
       letter-spacing: 0.02em;
       transition: color 0.2s;
     }
-
     .nav-links a:hover { color: #fff; }
 
-    /* ── Hero ─────────────────────────────────────────────────────────────── */
-    .hero {
-      min-height: 100vh;
-      display: flex;
-      align-items: center;
-      padding-top: 80px;
-    }
-
-    .hero-inner {
-      display: flex;
-      flex-direction: column;
-      gap: 28px;
-      max-width: 720px;
-    }
-
+    /* ── Hero ── */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; }
+    .hero-inner { display: flex; flex-direction: column; gap: 28px; max-width: 720px; }
     .hero-tag {
       display: inline-flex;
       align-items: center;
@@ -131,19 +102,16 @@
       width: fit-content;
       animation: fadeUp 0.6s ease both;
     }
-
     .hero-tag .dot {
       width: 6px; height: 6px;
       border-radius: 50%;
       background: var(--accent);
       animation: pulse 2s ease infinite;
     }
-
     @keyframes pulse {
       0%, 100% { opacity: 1; transform: scale(1); }
       50% { opacity: 0.5; transform: scale(0.8); }
     }
-
     h1 {
       font-family: "Syne", sans-serif;
       font-weight: 800;
@@ -153,10 +121,8 @@
       color: #fff;
       animation: fadeUp 0.6s 0.1s ease both;
     }
-
-    h1 .accent { color: var(--accent); }
+    h1 .accent  { color: var(--accent); }
     h1 .accent2 { color: var(--accent2); }
-
     .hero-sub {
       font-size: 18px;
       color: var(--muted);
@@ -164,7 +130,6 @@
       font-weight: 300;
       animation: fadeUp 0.6s 0.2s ease both;
     }
-
     .hero-cta {
       display: flex;
       gap: 14px;
@@ -172,6 +137,7 @@
       animation: fadeUp 0.6s 0.3s ease both;
     }
 
+    /* ── Buttons ── */
     .btn {
       display: inline-flex;
       align-items: center;
@@ -186,56 +152,57 @@
       border: none;
       font-family: inherit;
     }
-
     .btn-primary {
       background: var(--accent);
       color: #fff;
       box-shadow: 0 4px 24px rgba(74,143,255,0.35);
     }
-
     .btn-primary:hover {
       background: #3a7aee;
       transform: translateY(-2px);
       box-shadow: 0 8px 32px rgba(74,143,255,0.45);
     }
-
     .btn-ghost {
       background: var(--card);
       color: var(--text);
       border: 1px solid var(--border);
     }
-
     .btn-ghost:hover {
       background: rgba(255,255,255,0.06);
       transform: translateY(-2px);
     }
+    .btn-community {
+      background: rgba(167,139,250,0.12);
+      color: var(--accent2);
+      border: 1px solid rgba(167,139,250,0.25);
+    }
+    .btn-community:hover {
+      background: rgba(167,139,250,0.2);
+      transform: translateY(-2px);
+    }
 
-    /* ── Stats strip ──────────────────────────────────────────────────────── */
+    /* ── Stats ── */
     .stats {
       padding: 40px 0;
       border-top: 1px solid var(--border);
       border-bottom: 1px solid var(--border);
     }
-
     .stats-grid {
       display: flex;
       gap: 0;
       justify-content: space-around;
       flex-wrap: wrap;
     }
-
     .stat-item {
       text-align: center;
       padding: 20px 32px;
       opacity: 0;
       animation: fadeUp 0.5s ease forwards;
     }
-
     .stat-item:nth-child(1) { animation-delay: 0.1s; }
     .stat-item:nth-child(2) { animation-delay: 0.2s; }
     .stat-item:nth-child(3) { animation-delay: 0.3s; }
     .stat-item:nth-child(4) { animation-delay: 0.4s; }
-
     .stat-num {
       font-family: "Syne", sans-serif;
       font-size: 36px;
@@ -243,19 +210,57 @@
       color: #fff;
       letter-spacing: -0.03em;
     }
+    .stat-label { font-size: 13px; color: var(--muted); margin-top: 2px; letter-spacing: 0.04em; }
 
-    .stat-label {
-      font-size: 13px;
+    /* ── Law section ── */
+    .law-band {
+      padding: 64px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .law-inner {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+    }
+    .law-icon {
+      font-size: 72px;
+      flex-shrink: 0;
+      line-height: 1;
+      filter: drop-shadow(0 0 24px rgba(74,143,255,0.3));
+    }
+    .law-content h2 {
+      font-family: "Syne", sans-serif;
+      font-weight: 800;
+      font-size: 32px;
+      letter-spacing: -0.02em;
+      color: #fff;
+      margin-bottom: 14px;
+    }
+    .law-content p {
+      font-size: 15px;
       color: var(--muted);
-      margin-top: 2px;
+      line-height: 1.75;
+      max-width: 580px;
+      margin-bottom: 10px;
+    }
+    .law-content p:last-child { margin-bottom: 0; }
+    .law-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(74,143,255,0.08);
+      border: 1px solid rgba(74,143,255,0.2);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--accent);
       letter-spacing: 0.04em;
+      margin-bottom: 18px;
     }
 
-    /* ── Section ──────────────────────────────────────────────────────────── */
-    section {
-      padding: 100px 0;
-    }
-
+    /* ── Sections ── */
+    section { padding: 100px 0; }
     .section-tag {
       font-size: 11px;
       font-weight: 700;
@@ -264,7 +269,6 @@
       text-transform: uppercase;
       margin-bottom: 14px;
     }
-
     h2 {
       font-family: "Syne", sans-serif;
       font-weight: 800;
@@ -274,22 +278,15 @@
       line-height: 1.1;
       margin-bottom: 16px;
     }
+    .section-sub { font-size: 17px; color: var(--muted); max-width: 480px; font-weight: 300; }
 
-    .section-sub {
-      font-size: 17px;
-      color: var(--muted);
-      max-width: 480px;
-      font-weight: 300;
-    }
-
-    /* ── Feature cards ────────────────────────────────────────────────────── */
+    /* ── Cards ── */
     .cards {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
       gap: 16px;
       margin-top: 52px;
     }
-
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -299,7 +296,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .card::before {
       content: "";
       position: absolute;
@@ -309,15 +305,8 @@
       opacity: 0;
       transition: opacity 0.3s;
     }
-
-    .card:hover {
-      border-color: rgba(74,143,255,0.25);
-      background: rgba(255,255,255,0.05);
-      transform: translateY(-3px);
-    }
-
+    .card:hover { border-color: rgba(74,143,255,0.25); background: rgba(255,255,255,0.05); transform: translateY(-3px); }
     .card:hover::before { opacity: 1; }
-
     .card-icon {
       width: 44px; height: 44px;
       border-radius: 12px;
@@ -329,46 +318,19 @@
       background: rgba(74,143,255,0.1);
       border: 1px solid rgba(74,143,255,0.2);
     }
+    .card h3 { font-family: "Syne", sans-serif; font-weight: 700; font-size: 17px; color: #fff; margin-bottom: 8px; }
+    .card p { font-size: 14px; color: var(--muted); line-height: 1.65; }
 
-    .card h3 {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 17px;
-      color: #fff;
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      font-size: 14px;
-      color: var(--muted);
-      line-height: 1.65;
-    }
-
-    /* ── How it works ─────────────────────────────────────────────────────── */
-    .steps {
-      display: flex;
-      flex-direction: column;
-      gap: 0;
-      margin-top: 52px;
-      position: relative;
-    }
-
+    /* ── Steps ── */
+    .steps { display: flex; flex-direction: column; gap: 0; margin-top: 52px; position: relative; }
     .steps::before {
       content: "";
       position: absolute;
-      left: 21px;
-      top: 0; bottom: 0;
+      left: 21px; top: 0; bottom: 0;
       width: 1px;
       background: linear-gradient(180deg, var(--accent), transparent);
     }
-
-    .step {
-      display: flex;
-      gap: 24px;
-      padding-bottom: 40px;
-      position: relative;
-    }
-
+    .step { display: flex; gap: 24px; padding-bottom: 40px; position: relative; }
     .step-num {
       width: 44px; height: 44px;
       border-radius: 50%;
@@ -385,36 +347,12 @@
       position: relative;
       z-index: 1;
     }
+    .step-content h3 { font-family: "Syne", sans-serif; font-weight: 700; font-size: 18px; color: #fff; margin-bottom: 6px; margin-top: 10px; }
+    .step-content p { font-size: 15px; color: var(--muted); }
 
-    .step-content h3 {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 18px;
-      color: #fff;
-      margin-bottom: 6px;
-      margin-top: 10px;
-    }
-
-    .step-content p {
-      font-size: 15px;
-      color: var(--muted);
-    }
-
-    /* ── FAQ ──────────────────────────────────────────────────────────────── */
-    .faq-list {
-      margin-top: 52px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .faq-item {
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      overflow: hidden;
-    }
-
+    /* ── FAQ ── */
+    .faq-list { margin-top: 52px; display: flex; flex-direction: column; gap: 12px; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
     .faq-q {
       width: 100%;
       background: none;
@@ -431,17 +369,9 @@
       align-items: center;
       transition: color 0.2s;
     }
-
     .faq-q:hover { color: var(--accent); }
-
-    .faq-arrow {
-      font-size: 18px;
-      transition: transform 0.3s;
-      color: var(--muted);
-    }
-
+    .faq-arrow { font-size: 18px; transition: transform 0.3s; color: var(--muted); }
     .faq-item.open .faq-arrow { transform: rotate(45deg); color: var(--accent); }
-
     .faq-a {
       max-height: 0;
       overflow: hidden;
@@ -451,13 +381,9 @@
       line-height: 1.7;
       padding: 0 24px;
     }
+    .faq-item.open .faq-a { max-height: 200px; padding: 0 24px 20px; }
 
-    .faq-item.open .faq-a {
-      max-height: 200px;
-      padding: 0 24px 20px;
-    }
-
-    /* ── CTA banner ───────────────────────────────────────────────────────── */
+    /* ── CTA band ── */
     .cta-band {
       background: linear-gradient(135deg, rgba(74,143,255,0.12), rgba(167,139,250,0.08));
       border: 1px solid rgba(74,143,255,0.2);
@@ -466,55 +392,29 @@
       text-align: center;
       margin-bottom: 100px;
     }
-
     .cta-band h2 { margin-bottom: 14px; }
     .cta-band p { color: var(--muted); margin-bottom: 32px; font-size: 17px; }
 
-    /* ── Footer ───────────────────────────────────────────────────────────── */
-    footer {
-      border-top: 1px solid var(--border);
-      padding: 32px 0;
-    }
+    /* ── Footer ── */
+    footer { border-top: 1px solid var(--border); padding: 32px 0; }
+    footer .wrap { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: "Syne", sans-serif; font-weight: 700; font-size: 15px; color: rgba(255,255,255,0.4); }
+    .footer-note { font-size: 13px; color: rgba(255,255,255,0.2); }
 
-    footer .wrap {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 16px;
-    }
-
-    .footer-logo {
-      font-family: "Syne", sans-serif;
-      font-weight: 700;
-      font-size: 15px;
-      color: rgba(255,255,255,0.4);
-    }
-
-    .footer-note {
-      font-size: 13px;
-      color: rgba(255,255,255,0.2);
-    }
-
-    /* ── Animations ───────────────────────────────────────────────────────── */
+    /* ── Animations ── */
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(18px); }
       to   { opacity: 1; transform: translateY(0); }
     }
+    .reveal { opacity: 0; transform: translateY(24px); transition: opacity 0.6s ease, transform 0.6s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
 
-    /* ── Scroll reveal ────────────────────────────────────────────────────── */
-    .reveal {
-      opacity: 0;
-      transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
+    /* ── Responsive ── */
+    @media (max-width: 768px) {
+      .law-inner { flex-direction: column; gap: 24px; text-align: center; }
+      .law-icon { font-size: 52px; }
+      .law-badge { margin: 0 auto 18px; }
     }
-
-    .reveal.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ── Responsive ───────────────────────────────────────────────────────── */
     @media (max-width: 600px) {
       .nav-links { display: none; }
       .stats-grid { flex-direction: column; align-items: center; }
@@ -549,10 +449,11 @@
         Now in beta
       </div>
       <h1>Browse the web<br><span class="accent">unlock the full internet.</span></h1>
-      <p class="hero-sub">a powerful web proxy powered by proxy engines ultraviolet and scramjet, great UI and features.</p>
+      <p class="hero-sub">A powerful web proxy powered by Ultraviolet and Scramjet — great UI, built-in games, and full privacy.</p>
       <div class="hero-cta">
         <a class="btn btn-primary" href="#how">Get started →</a>
         <a class="btn btn-ghost" href="#features">Learn more</a>
+        <a class="btn btn-community" href="rizz.html">Community 🐟</a>
       </div>
     </div>
   </section>
@@ -582,24 +483,40 @@
   </div>
 </div>
 
+<!-- Law section -->
+<div class="law-band">
+  <div class="wrap">
+    <div class="law-inner reveal">
+      <div class="law-icon">⚖️</div>
+      <div class="law-content">
+        <div class="law-badge">📄 AGPL-3.0 License</div>
+        <h2>Law</h2>
+        <p>Fish Proxy is released under the <strong style="color:#fff">GNU Affero General Public License v3.0 (AGPL-3.0)</strong> — one of the strongest open source licenses available.</p>
+        <p>This means Fish Proxy's source code is fully open and public. Anyone can view, study, and learn from it. If someone modifies and redistributes Fish Proxy — including running it as a web service — they must also release their changes under the same open license. No closed forks allowed.</p>
+        <p>In short: Fish Proxy is free, open, and stays that way — forever.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- Features -->
 <div class="wrap" id="features">
   <section>
     <div class="reveal">
       <div class="section-tag">Features</div>
-      <h2>many features,<br>all convince.</h2>
-      <p class="section-sub">Built lean and fast. No bloat, full privacy, easy and fast. Just open it and go.</p>
+      <h2>Many features,<br>all convenience.</h2>
+      <p class="section-sub">Built lean and fast. No bloat, full privacy. Just open it and go.</p>
     </div>
     <div class="cards reveal">
       <div class="card">
         <div class="card-icon">⚡</div>
         <h3>Dual Proxy Engines</h3>
-        <p>Switch between Ultraviolet and Scramjet. the worlds most advanced proxy engines,Two engines means better compatibility across more sites.</p>
+        <p>Switch between Ultraviolet and Scramjet — the world's most advanced proxy engines. Two engines means better compatibility across more sites.</p>
       </div>
       <div class="card">
         <div class="card-icon">🎮</div>
         <h3>Built-in Games</h3>
-        <p>30+ games ready to play.  — you can even suggest even more games for us to add!.</p>
+        <p>30+ games ready to play — you can even suggest more games for us to add!</p>
       </div>
       <div class="card">
         <div class="card-icon">🔒</div>
@@ -645,7 +562,7 @@
         <div class="step-num">2</div>
         <div class="step-content">
           <h3>Type any URL or search</h3>
-          <p>Enter a website address or search term in the bar. Fish Proxy handles the rest.</p>
+          <p>Enter a website address or search term. Fish Proxy handles the rest.</p>
         </div>
       </div>
       <div class="step">
@@ -677,7 +594,7 @@
       </div>
       <div class="faq-item">
         <button class="faq-q">What's the difference between UV and SJ? <span class="faq-arrow">+</span></button>
-        <div class="faq-a">Ultraviolet (UV) is scramjets (SJ) precerser both engines have support for modern fast comaptible sites yet staying fast and sleek.</div>
+        <div class="faq-a">Ultraviolet (UV) is Scramjet's predecessor. Both engines support fast, compatible modern sites while staying sleek and private.</div>
       </div>
       <div class="faq-item">
         <button class="faq-q">Does it work on school Chromebooks? <span class="faq-arrow">+</span></button>
@@ -687,6 +604,10 @@
         <button class="faq-q">Is my browsing private? <span class="faq-arrow">+</span></button>
         <div class="faq-a">Fish Proxy collects only anonymous aggregate usage stats — like which proxy engine is most popular. No individual browsing history is stored or tracked.</div>
       </div>
+      <div class="faq-item">
+        <button class="faq-q">What license is Fish Proxy under? <span class="faq-arrow">+</span></button>
+        <div class="faq-a">Fish Proxy is licensed under AGPL-3.0. This means the source code is fully open, and anyone who modifies and redistributes it must keep it open source too.</div>
+      </div>
     </div>
   </section>
 </div>
@@ -695,8 +616,8 @@
 <div class="wrap">
   <div class="cta-band reveal">
     <h2>Ready to browse freely?</h2>
-    <p>No more filters controling us,FREEDOM!!.</p>
-    <a class="btn btn-primary" href="#">get fish proxy links →</a>
+    <p>No more filters controlling us. Freedom.</p>
+    <a class="btn btn-primary" href="#">Get Fish Proxy →</a>
   </div>
 </div>
 
@@ -704,7 +625,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-logo">🐟 Fish Proxy</div>
-    <div class="footer-note">the internet is for everyone. so give us freedom!.</div>
+    <div class="footer-note">The internet is for everyone. AGPL-3.0 licensed. Free forever.</div>
   </div>
 </footer>
 
@@ -713,9 +634,8 @@
 (function() {
   const c = document.getElementById("stars");
   const ctx = c.getContext("2d");
-  c.width = window.innerWidth;
-  c.height = window.innerHeight;
-  const stars = Array.from({length: 120}, () => ({
+  c.width = window.innerWidth; c.height = window.innerHeight;
+  const stars = Array.from({length:120}, () => ({
     x: Math.random()*c.width, y: Math.random()*c.height,
     r: Math.random()*1.2+0.2, o: Math.random()*0.5+0.1,
     p: Math.random()*Math.PI*2, ps: Math.random()*0.008+0.003
@@ -728,7 +648,7 @@
       s.p += s.ps;
       const a = s.o*(0.7+0.3*Math.sin(s.p));
       ctx.beginPath(); ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-      ctx.fillStyle = "rgba(255,255,255,"+a+")"; ctx.fill();
+      ctx.fillStyle="rgba(255,255,255,"+a+")"; ctx.fill();
     });
     requestAnimationFrame(draw);
   })();
@@ -736,11 +656,10 @@
 })();
 
 // Scroll reveal
-const reveals = document.querySelectorAll(".reveal");
 const obs = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("visible"); obs.unobserve(e.target); } });
 }, { threshold: 0.12 });
-reveals.forEach(r => obs.observe(r));
+document.querySelectorAll(".reveal").forEach(r => obs.observe(r));
 
 // FAQ accordion
 document.querySelectorAll(".faq-q").forEach(btn => {
